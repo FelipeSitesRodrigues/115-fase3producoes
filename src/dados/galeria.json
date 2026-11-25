@@ -1,0 +1,18 @@
+[
+  { "id": "medicina-formanda", "pe": true, "alt": "Formanda de vestido prateado sorrindo no Baile da Medicina XI Unipam" },
+  { "id": "hall-medicina", "pe": false, "alt": "Hall de entrada do Baile da Medicina XI com o coração gigante e as letras MEDICINA acesas" },
+  { "id": "juu-copo", "pe": true, "alt": "Universitária brindando com copo na festa do JUU" },
+  { "id": "lustres", "pe": false, "alt": "Pista lotada sob os lustres no baile das Unificadas Unipam" },
+  { "id": "vestido-azul", "pe": true, "alt": "Formanda de vestido azul posando no salão das Unificadas" },
+  { "id": "juu-fogo", "pe": false, "alt": "Palco do JUU com labaredas e o artista entrando" },
+  { "id": "agrarias-copo", "pe": true, "alt": "Formanda rindo com o copo na mão na festa das Agrárias" },
+  { "id": "ilha-central", "pe": false, "alt": "Ilha central da Medicina XI com lustres e o letreiro MED" },
+  { "id": "jiraya-copo", "pe": true, "alt": "Convidada dançando no Baile do Jiraya" },
+  { "id": "amigas-unificadas", "pe": false, "alt": "Turma de formandos comemorando sob os lustres das Unificadas" },
+  { "id": "baile-favela", "pe": false, "alt": "Cenografia temática Baile de Favela, com fachadas de tijolo e letreiro neon, nas Unificadas" },
+  { "id": "risoteria", "pe": false, "alt": "Espaço temático Risoteria com lustre e parede vermelha" },
+  { "id": "chapeu", "pe": true, "alt": "Formando de chapéu no ensaio Full Action das Agrárias" },
+  { "id": "infernato-galera", "pe": false, "alt": "Galera cantando com os braços para cima no Infernato Med" },
+  { "id": "unificadas-letreiro", "pe": false, "alt": "Letreiro luminoso UNIFICADAS UNIPAM na entrada do baile" },
+  { "id": "biomedicina-pista", "pe": false, "alt": "Casal dançando na pista do baile da Biomedicina FPM" }
+]

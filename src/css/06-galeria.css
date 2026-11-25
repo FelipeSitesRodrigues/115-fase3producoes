@@ -1,0 +1,42 @@
+/* ---------------------------------------------------------------- galeria
+   Faixa de ponta a ponta, fotos na mesma altura (em pé 2:3, deitada 3:2), correndo sem parar
+   (02-fita.js). Pontas somem no fundo. Sem JS ou com movimento reduzido, vira rolagem lateral. */
+.galeria { position: relative; padding: 96px 0 104px; --alt: 400px; }
+.galeria__faixa {
+  margin-top: 48px;
+  overflow: clip;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+.galeria__trilho { display: flex; width: max-content; will-change: transform; pointer-events: none; user-select: none; }
+.galeria__grupo { display: flex; flex: none; gap: 14px; padding-right: 14px; }
+.galeria__foto {
+  position: relative;
+  flex: none;
+  height: var(--alt);
+  aspect-ratio: 3 / 2;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--fundo-3);
+}
+.galeria__foto--pe { aspect-ratio: 2 / 3; }
+.galeria__foto picture, .galeria__foto img { display: block; width: 100%; height: 100%; max-width: none; }
+.galeria__foto img { object-fit: cover; }
+.galeria__pe { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 36px; font-size: 15px; color: var(--texto-2); }
+.galeria__link { display: inline-flex; align-items: center; gap: 10px; color: var(--branco); font-weight: 500; white-space: nowrap; }
+.galeria__link .i { font-size: 18px; transition: transform .45s var(--ease); }
+.galeria__link:hover .i { transform: translate(2px, -2px); }
+html:not(.fita-anda) .galeria__faixa { overflow-x: auto; scrollbar-width: none; }
+html:not(.fita-anda) .galeria__grupo[aria-hidden] { display: none; }
+html:not(.fita-anda) .galeria__trilho { pointer-events: auto; }
+
+@media (max-width: 63.99em) {
+  .galeria { --alt: 320PX; padding: 80PX 0 88PX; }
+}
+@media (max-width: 47.99em) {
+  .galeria { --alt: 240PX; padding: 64PX 0 72PX; }
+  .galeria__faixa { margin-top: 32PX; }
+  .galeria__grupo { gap: 10PX; padding-right: 10PX; }
+  .galeria__foto { border-radius: 14PX; }
+  .galeria__pe { flex-direction: column; align-items: flex-start; gap: 14PX; margin-top: 24PX; font-size: 13.5PX; }
+}

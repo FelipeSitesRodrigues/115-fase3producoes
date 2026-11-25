@@ -1,0 +1,74 @@
+/* ---------------------------------------------------------------- manifesto
+   Tela cheia com a pista do ChatGPT no fundo. A frase acende palavra por palavra conforme a
+   seção passa pela tela (animação ligada à rolagem, só opacity e transform). Onde o
+   navegador não tem animation-timeline, a frase entra inteira com o Blur Fade.               */
+.manifesto {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  max-height: 1100px;
+  padding: 140px 0;
+  overflow: clip;
+  isolation: isolate;
+  view-timeline-name: --manifesto;
+}
+.manifesto__fundo { position: absolute; inset: 0; z-index: -1; }
+.manifesto__fundo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(5 7 15 / .78) 0%, rgb(5 7 15 / .35) 55%, rgb(5 7 15 / .15) 100%),
+    linear-gradient(180deg, var(--fundo) 0%, rgb(5 7 15 / 0) 22%, rgb(5 7 15 / 0) 78%, var(--fundo) 100%);
+}
+.manifesto__fundo picture, .manifesto__fundo img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.manifesto__caixa { z-index: 1; }
+.manifesto__frase {
+  display: grid;
+  font-size: 98px;
+  line-height: .92;
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+}
+.manifesto__linha { display: block; white-space: nowrap; }
+.mw { display: inline-block; }
+.mw--seta { color: var(--azul); }
+.mw--seta .seta { margin-right: .22em; }
+.manifesto__sub { max-width: 560px; margin-top: 40px; font-size: 20px; line-height: 1.5; color: rgb(245 247 255 / .82); }
+.manifesto__rec { position: absolute; left: 76px; bottom: 76px; z-index: 1; gap: 10px; font-size: 14px; letter-spacing: .1em; }
+.manifesto__tempo { font-variant-numeric: tabular-nums; color: rgb(245 247 255 / .7); letter-spacing: .06em; }
+.manifesto .visor { inset: 48px; z-index: 1; }
+
+/* palavras acendendo com a rolagem */
+@supports (animation-timeline: view()) {
+  .js .mw {
+    opacity: .18;
+    animation: mw-acende linear both;
+    animation-timeline: --manifesto;
+    animation-range: cover calc(12% + var(--w) * 3.2%) cover calc(24% + var(--w) * 3.2%);
+  }
+  @keyframes mw-acende { to { opacity: 1; } }
+}
+@supports not (animation-timeline: view()) {
+  .js .manifesto__frase { opacity: 0; transform: translate3d(0, 24px, 0); filter: blur(12px); transition: opacity 1s var(--ease), transform 1.2s var(--ease), filter 1s var(--ease); }
+  .js .manifesto.visivel .manifesto__frase { opacity: 1; transform: none; filter: none; }
+}
+
+@media (max-width: 74.99em) {
+  .manifesto__frase { font-size: clamp(56PX, 8.6vw, 96PX); }
+}
+@media (max-width: 47.99em) {
+  .manifesto { min-height: 88svh; padding: 112PX 0; }
+  .manifesto__fundo::after { background: linear-gradient(180deg, var(--fundo) 0%, rgb(5 7 15 / .45) 22%, rgb(5 7 15 / .55) 78%, var(--fundo) 100%); }
+  .manifesto__frase { font-size: clamp(34PX, 10.6vw, 46PX); }
+  .manifesto__linha { white-space: normal; }
+  .manifesto__sub { margin-top: 28PX; font-size: 16.5PX; }
+  .manifesto__rec { left: 32PX; bottom: 36PX; min-height: 34PX; font-size: 12PX; }
+  .manifesto .visor { inset: 20PX; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .mw { opacity: 1; animation: none; }
+  .js .manifesto__frase { opacity: 1; transform: none; filter: none; }
+}

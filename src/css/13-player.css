@@ -1,0 +1,28 @@
+/* ---------------------------------------------------------------- player (filme inteiro)
+   <dialog> com o YouTube sem cookie. O iframe só nasce no clique.                             */
+.player {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+}
+.player::backdrop { background: rgb(2 3 8 / .9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.player[open] { display: grid; place-items: center; animation: player-entra .5s var(--ease); }
+@keyframes player-entra { from { opacity: 0; transform: scale(.97); } }
+.player__caixa { position: relative; width: min(100% - 64PX, 1280px, (100vh - 140px) * 16 / 9); }
+.player__tela { aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #000; box-shadow: 0 40px 100px -30px rgb(0 0 0 / .8); }
+.player__tela iframe { width: 100%; height: 100%; border: 0; display: block; }
+.player__fechar { position: absolute; right: 0; top: -68px; }
+@media (max-width: 47.99em) {
+  .player__caixa { width: calc(100% - 24PX); }
+  .player__tela { border-radius: 12PX; }
+  .player__fechar { top: -60PX; }
+}
+/* saída de emergência: o YouTube às vezes pede login dentro do embed */
+.player__link { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 14px; color: var(--texto); text-decoration: none; transition: color .3s var(--ease-hover); }
+.player__link .i { width: 14px; height: 14px; }
+.player__link:hover { color: #fff; }

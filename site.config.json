@@ -1,0 +1,28 @@
+{
+  "dominio": "",
+  "indexar": false,
+  "whatsapp": "5534997139461",
+  "telefone": "(34) 99713-9461",
+  "endereco": {
+    "rua": "Alameda Vicente Pinzon, 144, 3º andar",
+    "bairro": "Vila Olímpia",
+    "cidade": "São Paulo",
+    "uf": "SP",
+    "cep": "04547-130"
+  },
+  "descricao": "Fase3: formaturas, festas de turma, eventos corporativos, stands e cenografia com produção audiovisual da mesma equipe, do primeiro esboço ao aftermovie.",
+  "redes": {
+    "instagram": "https://www.instagram.com/f3productionoficial/",
+    "instagramFormaturas": "https://www.instagram.com/fase3formaturasoficial/",
+    "youtube": "https://www.youtube.com/@fase3formaturas"
+  },
+  "pendencias": [
+    "indexar false e dominio vazio até publicar",
+    "WhatsApp: confirmar qual dos dois do Linktree vai no site (hoje 34 99713-9461)",
+    "Números da faixa de prova vieram do site antigo (2023): confirmar +2.000 formandos, +60 turmas, +40 festas de dias e os 8 anos",
+    "Depoimentos: os 3 do site são espaço reservado. Pedir prints de avaliação ou mensagens de comissão",
+    "Corporativo: a imagem é provisória (ChatGPT). Trocar por vídeo ou foto real do cliente",
+    "Fotos do Sobre e dos cards das frentes são do ChatGPT: trocar por fotos reais da equipe quando o cliente mandar",
+    "FAQ: prazos, pagamento e área de atuação escritos sem número; confirmar com o cliente"
+  ]
+}

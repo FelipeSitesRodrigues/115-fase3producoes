@@ -1,0 +1,20 @@
+{
+  "name": "0115-f3-production",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Site da Fase3 (formaturas, live marketing e produção audiovisual). HTML, CSS e JS estático, sem dependência em tempo de execução.",
+  "scripts": {
+    "build": "node build.mjs",
+    "publicar": "node build.mjs --publicar",
+    "serve": "node scripts/serve.mjs 3420",
+    "imagens": "node scripts/processar-imagens.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/inter-tight": "^5.3.0",
+    "@phosphor-icons/core": "^2.1.1",
+    "cheerio": "^1.2.0",
+    "puppeteer-core": "^25.18.1",
+    "sharp": "^0.35.5"
+  }
+}

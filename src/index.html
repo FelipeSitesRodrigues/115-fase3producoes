@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- @preload -->
+  <link rel="preload" href="/assets/fonts/inter-tight-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    // js liga as animações de entrada (sem JS tudo aparece no lugar)
+    document.documentElement.classList.add('js')
+    // abertura com o logo: uma vez por visita e nunca pra quem pediu menos movimento.
+    // ?abertura no endereço força (pra revisar sem abrir aba anônima)
+    try {
+      var forcar = /[?&]abertura(=|&|$)/.test(location.search) || location.hostname === 'localhost'
+      if ((forcar || !sessionStorage.getItem('f3-abertura')) && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('abre')
+        sessionStorage.setItem('f3-abertura', '1')
+      }
+    } catch (e) {}
+  </script>
+  <title>Fase3 | Formaturas, eventos e produção audiovisual</title>
+  <meta name="description" content="Formaturas, festas de turma, eventos corporativos, stands e cenografia com audiovisual da mesma equipe. Do primeiro esboço ao aftermovie. Fale com a Fase3 pelo WhatsApp.">
+  <!-- @robots -->
+  <meta name="theme-color" content="#05070F">
+  <meta name="format-detection" content="telephone=no">
+  <!-- @meta-dominio -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Fase3">
+  <meta property="og:title" content="Fase3 | Criamos o evento. Filmamos a história.">
+  <meta property="og:description" content="Formaturas, eventos corporativos, stands e cenografia com audiovisual da mesma equipe, do primeiro esboço ao aftermovie.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo da Fase3 sobre formandos comemorando sob os lustres do baile">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <!-- @css -->
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- abertura (modelo da 0105 Ston, 0104 Lume e 0114 DJ Sky): o palco do JUU em opacidade
+       baixa e, por cima, o motion do logo que a Fase3 mandou, refeito em código (peças
+       vetorizadas, só transform e opacity: o vídeo do motion engasgava no carregamento).
+       ~2,4 s de logo e a tela sobe com a borda curva, revelando o hero (97-abertura) -->
+  <div class="abertura" aria-hidden="true" data-abertura>
+    <video class="abertura__video" muted playsinline loop preload="none" data-src="/assets/video/abertura.mp4" data-src-cel="/assets/video/abertura-cel.mp4" width="960" height="540"></video>
+    <!-- @parcial 96-abertura-logo -->
+  </div>
+  <script>
+    // só baixa o vídeo de fundo da abertura quando ela vai mesmo rodar. No celular é outro trecho
+    // do Mercatto (o bar): a tela em pé cortava ao meio o texto "MERCATTO 90'S" da entrada
+    if (document.documentElement.classList.contains('abre')) {
+      var av = document.querySelector('.abertura__video')
+      if (av) { av.src = av.getAttribute(matchMedia('(max-width: 47.99em)').matches ? 'data-src-cel' : 'data-src'); if (av.play) av.play().catch(function () {}) }
+    }
+  </script>
+
+  <!-- @parcial 00-topo -->
+
+  <main id="conteudo">
+    <!-- @parcial 01-hero -->
+    <!-- @parcial 02-prova -->
+    <!-- @parcial 03-manifesto -->
+    <!-- @parcial 04-sobre -->
+    <!-- @parcial 05-frentes -->
+    <!-- @parcial 06-galeria -->
+    <!-- @parcial 07-filmes -->
+    <!-- @parcial 08-diferenciais -->
+    <!-- @parcial 09-depoimentos -->
+    <!-- @parcial 10-perguntas -->
+    <!-- @parcial 11-cta -->
+  </main>
+
+  <!-- @parcial 12-rodape -->
+  <!-- @parcial 13-player -->
+
+  <!-- @sprite -->
+  <!-- @schema -->
+  <!-- @js -->
+</body>
+</html>

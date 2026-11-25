@@ -1,0 +1,134 @@
+/* ---------------------------------------------------------------- orçamento flutuante
+   Modelo do botão fixo do portfólio (000): caixa de vidro escuro no canto de baixo à direita,
+   o símbolo da Fase3 e a pílula azul de vidro (a mesma do "Ver nossos filmes"). Entra subindo
+   quando o hero sai e some perto do CTA e do rodapé (12-zap.js). O clique abre o painel com
+   nome e tipo de evento, que monta a mensagem e abre o WhatsApp (14-orcamento.js).          */
+.orc {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(.96);
+  pointer-events: none;
+  transition: opacity .4s var(--ease-hover), transform .6s var(--ease);
+  will-change: transform, opacity;
+}
+/* a caixa não pega clique (no celular ela tem a largura da tela); só o botão e o painel aberto */
+.orc.zap--visivel { opacity: 1; transform: none; }
+.orc.zap--visivel .orc__botao { pointer-events: auto; }
+.orc__botao { pointer-events: none; }
+
+.orc__botao {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 8px 8px 14px;
+  border: 0;
+  border-radius: 22px;
+  font: inherit;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgb(20 26 44 / .94), rgb(5 7 15 / .96));
+  box-shadow: inset 0 0 0 1.5PX rgb(255 255 255 / .12), inset 0 1.5PX 0 rgb(255 255 255 / .2), 0 20px 50px rgb(0 0 0 / .45);
+}
+.orc__marca { display: grid; place-items: center; width: 44px; height: 44px; }
+.orc__marca .i { width: 40px; height: auto; color: #fff; }
+/* a pílula: vidro azul claro, igual ao .botao--azul */
+.orc__pilula {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  height: 52px;
+  padding: 0 6px 0 22px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: #fff;
+  text-shadow: 0 1px 8px rgb(0 92 170 / .55);
+  border: 1.5px solid rgb(255 255 255 / .9);
+  background: radial-gradient(75% 120% at 50% 50%, #3FBAFF 0%, #63C7FF 48%, #A6DCFF 100%);
+  box-shadow: 0 0 0 1.5px rgb(86 196 255 / .75), inset 0 0 0 1px rgb(150 218 255 / .55), inset 0 2px 8px rgb(255 255 255 / .45), 0 10px 26px -10px rgb(63 186 255 / .6);
+  transition: box-shadow .35s var(--ease-hover);
+}
+.orc__pilula::before { content: ''; position: absolute; inset: 2px 18px auto; height: 42%; border-radius: 999px; background: linear-gradient(rgb(255 255 255 / .38), rgb(255 255 255 / 0)); pointer-events: none; }
+.orc__bola { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; color: #1E9BEA; background: #fff; box-shadow: 0 2px 10px rgb(0 92 170 / .3); text-shadow: none; }
+.orc__bola .i { width: 18px; height: 18px; transition: rotate .45s var(--ease); }
+.orc__botao:hover .orc__pilula { box-shadow: 0 0 0 1.5px rgb(86 196 255 / .9), inset 0 0 0 1px rgb(150 218 255 / .6), inset 0 2px 8px rgb(255 255 255 / .5), 0 14px 32px -10px rgb(63 186 255 / .8); }
+.orc__botao:hover .orc__bola .i, .orc--aberto .orc__bola .i { rotate: 45deg; }
+.orc__botao:focus-visible { outline: 2PX solid var(--ciano); outline-offset: 3PX; }
+
+/* ---------------------------------------------------------------- painel */
+.orc__painel {
+  position: relative;
+  width: 360px;
+  padding: 26px 24px 24px;
+  border-radius: 24px;
+  color: #fff;
+  background: linear-gradient(180deg, rgb(20 26 44 / .97), rgb(7 9 18 / .98));
+  box-shadow: inset 0 0 0 1.5PX rgb(255 255 255 / .1), inset 0 1.5PX 0 rgb(255 255 255 / .16), 0 30px 70px rgb(0 0 0 / .55);
+  transform-origin: 100% 100%;
+  opacity: 0;
+  transform: translate3d(0, 12px, 0) scale(.96);
+  pointer-events: none;
+  transition: opacity .3s var(--ease-hover), transform .45s var(--ease);
+}
+.orc--aberto .orc__painel { opacity: 1; transform: none; pointer-events: auto; }
+.orc__fechar { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; color: var(--texto); background: rgb(255 255 255 / .08); cursor: pointer; transition: background-color .3s var(--ease-hover), color .3s var(--ease-hover); }
+.orc__fechar:hover { color: #fff; background: rgb(255 255 255 / .16); }
+.orc__fechar .i { width: 16px; height: 16px; }
+.orc__titulo { margin: 0 44px 8px 0; font-size: 20px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.orc__texto { margin: 0 0 20px; font-size: 14.5px; line-height: 1.5; color: var(--texto); }
+.orc__form { display: grid; gap: 18px; }
+.orc__campo { display: grid; gap: 8px; }
+.orc__campo span, .orc__tipos legend { font-size: 13px; font-weight: 500; color: var(--texto); }
+.orc__campo input {
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--linha-2);
+  border-radius: 14px;
+  font: inherit;
+  font-size: 16PX;
+  color: #fff;
+  background: rgb(255 255 255 / .05);
+  transition: border-color .3s var(--ease-hover), background-color .3s var(--ease-hover);
+}
+.orc__campo input::placeholder { color: var(--texto-2); }
+.orc__campo input:focus { outline: none; border-color: var(--ciano); background: rgb(92 200 255 / .08); }
+.orc__tipos { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; border: 0; }
+.orc__tipos legend { margin-bottom: 8px; padding: 0; }
+.orc__tipos label { position: relative; cursor: pointer; }
+.orc__tipos input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.orc__tipos span {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--linha-2);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--branco);
+  transition: border-color .3s var(--ease-hover), background-color .3s var(--ease-hover), color .3s var(--ease-hover);
+}
+.orc__tipos label:hover span { border-color: rgb(255 255 255 / .34); }
+.orc__tipos input:checked + span { color: #fff; border-color: #6FCBFF; background: rgb(63 186 255 / .28); }
+.orc__tipos input:focus-visible + span { outline: 2PX solid var(--ciano); outline-offset: 2PX; }
+.orc__enviar { width: 100%; margin-top: 2px; }
+
+@media (max-width: 47.99em) {
+  .orc { right: 12PX; bottom: 12PX; left: 12PX; }
+  .orc__botao { gap: 10PX; padding: 6PX 6PX 6PX 10PX; border-radius: 18PX; }
+  .orc__marca { width: 36PX; height: 36PX; }
+  .orc__marca .i { width: 34PX; }
+  .orc__pilula { height: 46PX; gap: 10PX; padding: 0 4PX 0 16PX; font-size: 15PX; }
+  .orc__bola { width: 38PX; height: 38PX; }
+  .orc__painel { width: 100%; padding: 22PX 18PX 18PX; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orc, .orc__painel { transform: none; transition: opacity .2s linear; }
+}

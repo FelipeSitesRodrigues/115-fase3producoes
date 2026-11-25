@@ -1,0 +1,27 @@
+/* ---------------------------------------------------------------- rodapé e botão flutuante */
+.rodape { padding: 88px 0 36px; border-top: 1px solid var(--linha); background: var(--fundo); }
+.rodape__grade { display: grid; grid-template-columns: 1.4fr 1fr 1.4fr 1.2fr; gap: 48px; }
+.rodape__marca { display: grid; align-content: start; gap: 22px; }
+.rodape__logo { display: flex; color: #fff; }
+.rodape__logo .i { width: 128px; height: 66px; }
+.rodape__marca p { max-width: 260px; font-size: 16px; color: var(--texto); }
+.rodape__col { display: grid; align-content: start; gap: 14px; font-size: 15.5px; color: var(--texto); }
+.rodape__titulo { margin-bottom: 6px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--branco); }
+.rodape__col a, .rodape__col p { display: flex; align-items: flex-start; gap: 10px; width: fit-content; line-height: 1.45; }
+.rodape__col .i { margin-top: 2px; font-size: 18px; color: var(--texto-2); }
+.rodape__col a { transition: color .3s var(--ease-hover); }
+.rodape__col a:hover { color: #fff; }
+.rodape__fim { display: flex; justify-content: space-between; gap: 24px; margin-top: 72px; padding-top: 28px; border-top: 1px solid var(--linha); font-size: 14px; color: var(--texto-2); }
+.rodape__fim a { color: var(--branco); border-bottom: 1px solid rgb(255 255 255 / .3); transition: border-color .3s var(--ease-hover); }
+.rodape__fim a:hover { border-color: #fff; }
+
+
+
+@media (max-width: 63.99em) {
+  .rodape__grade { grid-template-columns: 1fr 1fr; row-gap: 44PX; }
+}
+@media (max-width: 47.99em) {
+  .rodape { padding: 64PX 0 96PX; }
+  .rodape__grade { grid-template-columns: 1fr; gap: 36PX; }
+  .rodape__fim { flex-direction: column; gap: 10PX; margin-top: 48PX; }
+}

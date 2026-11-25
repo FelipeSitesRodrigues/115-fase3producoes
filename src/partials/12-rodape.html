@@ -1,0 +1,60 @@
+<footer class="rodape cv" style="--cvh:420px" id="contato">
+  <div class="caixa">
+    <div class="rodape__grade">
+      <div class="rodape__marca">
+        <a class="rodape__logo" href="#inicio" aria-label="Fase3, voltar ao início"><i data-i="logo-fase3" data-w="marca"></i></a>
+        <p>Experiências que conectam marcas e pessoas.</p>
+      </div>
+      <nav class="rodape__col" aria-label="Rodapé">
+        <h2 class="rodape__titulo">Navegue</h2>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#perguntas">Perguntas</a>
+      </nav>
+      <div class="rodape__col">
+        <h2 class="rodape__titulo">Contato</h2>
+        <a href="{{wa:Olá! Vim pelo site e quero falar com a Fase3.}}" target="_blank" rel="noopener"><i data-i="whatsapp-logo" data-w="light"></i>WhatsApp {{cfg.telefone}}</a>
+        <p><i data-i="map-pin" data-w="light"></i><span>{{cfg.endereco.rua}}<br>{{cfg.endereco.bairro}}, {{cfg.endereco.cidade}}/{{cfg.endereco.uf}}</span></p>
+      </div>
+      <div class="rodape__col">
+        <h2 class="rodape__titulo">Siga</h2>
+        <a href="{{cfg.redes.instagram}}" target="_blank" rel="noopener"><i data-i="instagram-logo" data-w="light"></i>@f3productionoficial</a>
+        <a href="{{cfg.redes.instagramFormaturas}}" target="_blank" rel="noopener"><i data-i="instagram-logo" data-w="light"></i>@fase3formaturasoficial</a>
+        <a href="{{cfg.redes.youtube}}" target="_blank" rel="noopener"><i data-i="youtube-logo" data-w="light"></i>@fase3formaturas</a>
+      </div>
+    </div>
+    <div class="rodape__fim">
+      <p>© {{ano}} Fase3. Todos os direitos reservados.</p>
+      <p>Site por <a href="https://www.instagram.com/feliperodrigues.sites/" target="_blank" rel="noopener">Felipe Rodrigues Sites</a></p>
+    </div>
+  </div>
+</footer>
+<!-- orçamento flutuante (modelo do portfólio 000): aparece depois do hero e some no CTA e no
+     rodapé (12-zap.js). O clique abre um formulário curto (nome e tipo de evento) que monta a
+     mensagem e abre o WhatsApp. O formulário mora num template e só nasce no 1º clique. -->
+<div class="orc" data-zap data-numero="{{cfg.whatsapp}}">
+  <div class="orc__painel" id="orc-painel" role="dialog" aria-labelledby="orc-titulo" inert>
+    <button type="button" class="orc__fechar" data-orc-fechar aria-label="Fechar"><i data-i="x" data-w="regular"></i></button>
+    <p class="orc__titulo" id="orc-titulo">Solicitar orçamento</p>
+    <p class="orc__texto">Conta rapidinho o que você precisa. A conversa continua no WhatsApp.</p>
+    <template data-orc-form>
+      <form class="orc__form" data-orc-enviar>
+        <label class="orc__campo"><span>Seu nome</span><input type="text" name="nome" required autocomplete="name" placeholder="Como podemos te chamar?"></label>
+        <fieldset class="orc__tipos">
+          <legend>Tipo de evento</legend>
+          <label><input type="radio" name="tipo" value="Formatura" required><span>Formatura</span></label>
+          <label><input type="radio" name="tipo" value="Festa universitária"><span>Festa universitária</span></label>
+          <label><input type="radio" name="tipo" value="Evento corporativo"><span>Corporativo</span></label>
+          <label><input type="radio" name="tipo" value="Live marketing ou stand"><span>Live marketing ou stand</span></label>
+          <label><input type="radio" name="tipo" value="Outro tipo de evento"><span>Outro</span></label>
+        </fieldset>
+        <button type="submit" class="botao botao--azul orc__enviar"><i data-i="whatsapp-logo" data-w="regular"></i>Continuar no WhatsApp</button>
+      </form>
+    </template>
+  </div>
+  <button type="button" class="orc__botao" data-orc-abrir aria-expanded="false" aria-controls="orc-painel">
+    <span class="orc__marca" aria-hidden="true"><i data-i="logo-fase3" data-w="marca"></i></span>
+    <span class="orc__pilula">Solicitar orçamento<span class="orc__bola" aria-hidden="true"><i data-i="arrow-up-right" data-w="bold"></i></span></span>
+  </button>
+</div>

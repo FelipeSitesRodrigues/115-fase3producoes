@@ -1,0 +1,118 @@
+/* ---------------------------------------------------------------- três frentes
+   Cartões altos no padrão da referência de cards (foto com borrão de movimento e interface de
+   vidro por cima). As notificações entram em sequência quando o cartão aparece. Embaixo de
+   cada cartão, os 4 serviços da frente, cada um com a sua mensagem de WhatsApp.              */
+.frentes { overflow: clip; }
+.frentes__luz {
+  position: absolute;
+  right: -10%;
+  bottom: -10%;
+  width: 60%;
+  height: 70%;
+  background: radial-gradient(closest-side, rgb(47 107 255 / .32), transparent);
+  pointer-events: none;
+}
+.frentes__grade { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+
+.frente__card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--fundo-3);
+  border: 1px solid rgb(255 255 255 / .1);
+  isolation: isolate;
+}
+.frente__card picture, .frente__card > img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; max-width: none; }
+.frente__card img { object-fit: cover; transition: transform 1.4s var(--ease); }
+.frente:hover .frente__card img { transform: scale(1.045); }
+.frente__card::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(0deg, rgb(5 7 15 / .88) 0%, rgb(5 7 15 / 0) 42%), linear-gradient(180deg, rgb(5 7 15 / .45) 0%, rgb(5 7 15 / 0) 30%); }
+
+/* interface de vidro no alto do cartão */
+.frente__ui { position: absolute; inset: 22px 22px auto; display: grid; justify-items: start; gap: 10px; }
+.frente__notif { font-size: 13.5px; min-height: 38px; padding: 0 14px; }
+.frente__sep { opacity: .5; }
+.frente__notif--2 { font-size: 12.5px; letter-spacing: .04em; }
+.frente__etiquetas { position: relative; display: grid; justify-items: start; gap: 12px; margin: 8px 0 0 14px; padding-left: 22px; }
+.frente__etiquetas::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 1px; background: rgb(255 255 255 / .4); }
+.frente__etiqueta {
+  position: relative;
+  padding: 7px 13px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border: 1px solid rgb(255 255 255 / .18);
+  background: rgb(10 14 26 / .55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.frente__etiqueta::before { content: ''; position: absolute; left: -26px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: var(--ciano); box-shadow: 0 0 10px var(--ciano); }
+.frente__render { display: grid; gap: 14px; width: min(100%, 280px); padding: 14px 16px 16px; border-radius: 18px; }
+.frente__render-topo { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
+.frente__render-topo .i { font-size: 22px; }
+.frente__progresso { position: relative; height: 4px; border-radius: 4px; background: rgb(255 255 255 / .18); overflow: hidden; }
+.frente__progresso span { position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(90deg, var(--azul), var(--ciano)); transform-origin: left; }
+
+/* entrada da interface: as peças chegam depois do cartão, em sequência */
+.js .frente__ui > * { opacity: 0; transform: translate3d(0, 10px, 0); filter: blur(6px); transition: opacity .7s var(--ease), transform .9s var(--ease), filter .7s var(--ease); }
+.js .frente.visivel .frente__ui > * { opacity: 1; transform: none; filter: none; }
+.js .frente.visivel .frente__ui > :nth-child(1) { transition-delay: calc(var(--i) * 110ms + .55s); }
+.js .frente.visivel .frente__ui > :nth-child(2) { transition-delay: calc(var(--i) * 110ms + .75s); }
+.js .frente__etiqueta { opacity: 0; transform: translate3d(-8px, 0, 0); transition: opacity .6s var(--ease), transform .8s var(--ease); }
+.js .frente.visivel .frente__etiqueta { opacity: 1; transform: none; }
+.js .frente.visivel .frente__etiqueta:nth-child(1) { transition-delay: 1.05s; }
+.js .frente.visivel .frente__etiqueta:nth-child(2) { transition-delay: 1.2s; }
+.js .frente.visivel .frente__etiqueta:nth-child(3) { transition-delay: 1.35s; }
+.js .frente__progresso span { transform: scaleX(0); transition: transform 2.4s cubic-bezier(.45, 0, .2, 1) 1.1s; }
+.js .frente.visivel .frente__progresso span { transform: scaleX(1); }
+
+.frente__base { position: absolute; inset: auto 22px 22px 26px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.frente__nome { font-size: 34px; line-height: .95; letter-spacing: -.045em; text-transform: uppercase; }
+.frente__linha { margin-top: 10px; font-size: 15.5px; line-height: 1.4; color: rgb(245 247 255 / .78); }
+.frente__zap:hover .i { transform: rotate(45deg); }
+.frente__zap .i { transition: transform .45s var(--ease); }
+
+/* serviços da frente */
+.frente__servicos { margin-top: 10px; }
+.frente__servicos a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 6px 18px 4px;
+  border-bottom: 1px solid var(--linha);
+  transition: padding .45s var(--ease), border-color .35s var(--ease-hover);
+}
+.frente__servicos span { display: grid; gap: 4px; }
+.frente__servicos strong { font-size: 17px; font-weight: 500; letter-spacing: -.015em; }
+.frente__servicos small { font-size: 14px; line-height: 1.45; color: var(--texto-2); transition: color .35s var(--ease-hover); }
+.frente__servicos .i { flex: none; font-size: 20px; color: var(--texto-2); transition: color .35s var(--ease-hover), transform .45s var(--ease); }
+.frente__servicos a:hover { padding-left: 12px; border-color: rgb(255 255 255 / .3); }
+.frente__servicos a:hover small { color: var(--texto); }
+.frente__servicos a:hover .i { color: #25D366; transform: scale(1.12); }
+
+@media (max-width: 74.99em) {
+  .frentes__grade { gap: 16PX; }
+  .frente__nome { font-size: 28PX; }
+  .frente__ui { inset: 16PX 16PX auto; }
+  .frente__base { inset: auto 16PX 16PX 18PX; }
+}
+@media (max-width: 63.99em) {
+  .frentes__grade { grid-template-columns: 1fr; gap: 56PX; max-width: 560PX; margin-inline: auto; }
+  .frente__card { aspect-ratio: 4 / 4.2; }
+}
+@media (max-width: 47.99em) {
+  .frentes__grade { gap: 44PX; }
+  .frente__card { aspect-ratio: 4 / 4.6; border-radius: 22PX; }
+  .frente__nome { font-size: 28PX; }
+  .frente__linha { font-size: 14.5PX; }
+  .frente__notif { font-size: 12.5PX; min-height: 34PX; padding: 0 12PX; }
+  .frente__servicos a { padding: 16PX 4PX 16PX 2PX; }
+  .frente__servicos strong { font-size: 16PX; }
+  .frente__servicos small { font-size: 13.5PX; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .frente__ui > *, .js .frente__etiqueta, .js .frente__progresso span { opacity: 1; transform: none; filter: none; transition: none; }
+}

@@ -1,0 +1,53 @@
+<section class="hero" id="inicio" aria-labelledby="hero-titulo" data-hero>
+  <!-- fundo: a capa (1º quadro do 1º vídeo, é o LCP) e os 4 trechos em cima, trocando com
+       fusão. O JS escolhe o arquivo de computador ou o vertical do celular -->
+  <div class="hero__midia" aria-hidden="true">
+    <img class="hero__capa" data-picture="hero__quadro" data-img="capa-estrutural" data-celular="capa-estrutural-cel" data-celular-sizes="100vw" sizes="100vw" data-preload fetchpriority="high" alt="">
+    <video class="hero__video" muted playsinline preload="none" width="1280" height="720" data-src="/assets/video/estrutural.mp4" data-src-cel="/assets/video/estrutural-cel.mp4"></video>
+    <video class="hero__video" muted playsinline preload="none" width="1280" height="720" data-src="/assets/video/infernato.mp4" data-src-cel="/assets/video/infernato-cel.mp4"></video>
+    <video class="hero__video" muted playsinline preload="none" width="1280" height="720" data-src="/assets/video/juu.mp4" data-src-cel="/assets/video/juu-cel.mp4"></video>
+    <video class="hero__video" muted playsinline preload="none" width="1280" height="720" data-src="/assets/video/jiraya.mp4" data-src-cel="/assets/video/jiraya-cel.mp4"></video>
+    <span class="hero__veu"></span>
+  </div>
+
+  <div class="hero__conteudo">
+    <p class="hero__selo ponto anim-hero-texto" style="--atraso:.25s">Formaturas · Live marketing · Audiovisual</p>
+    <h1 class="hero__titulo anim-hero" id="hero-titulo" data-palavras>Criamos o evento.<br><span class="tarja"><i data-i="arrow-right" data-w="regular" class="seta"></i></span> Filmamos a história.</h1>
+    <p class="hero__sub anim-hero-texto" style="--atraso:.8s">Formaturas, festas de turma e eventos corporativos com cenografia, estrutura e audiovisual da mesma equipe, do primeiro esboço ao aftermovie.</p>
+    <div class="botoes hero__botoes anim-hero-texto" style="--atraso:.95s">
+      <a class="botao botao--leitoso" data-brilho href="{{wa:Olá! Vim pelo site e quero planejar um evento com a Fase3.}}" target="_blank" rel="noopener"><span class="brilho" aria-hidden="true"><span class="brilho__volta"><span class="brilho__ponto"></span></span></span><span class="brilho-fio" aria-hidden="true"><span class="brilho__ponto"></span></span>Planejar meu evento<i data-i="arrow-right" data-w="regular" class="i--seta"></i></a>
+      <a class="botao botao--azul" href="#portfolio"><i data-i="play" data-w="fill"></i>Ver nossos filmes</a>
+    </div>
+    <p class="hero__micro anim-hero-texto" style="--atraso:1.1s">Orçamento sem compromisso<span aria-hidden="true">·</span>Atendimento pelo WhatsApp</p>
+  </div>
+
+  <div class="hero__base">
+    <div class="hero__turma vidro anim-hero-texto" style="--atraso:1.25s">
+      <div class="hero__avatares" aria-hidden="true">
+        <img data-img="avatar-medicina-formanda" sizes="48px" alt="" loading="lazy">
+        <img data-img="avatar-agrarias-copo" sizes="48px" alt="" loading="lazy">
+        <img data-img="avatar-chapeu" sizes="48px" alt="" loading="lazy">
+      </div>
+      <p class="hero__turma-texto"><strong>+2.000</strong><span>formandos já viveram a formatura com a Fase3</span></p>
+    </div>
+
+    <div class="hero__barras anim-hero-texto" style="--atraso:1.35s">
+      <div class="barras" role="group" aria-label="Vídeos do topo"><!-- @gerar hero-barras --></div>
+      <p class="hero__conta" aria-hidden="true"><span data-hero-n>01</span> / 04</p>
+    </div>
+
+    <a class="hero__tocando vidro anim-hero-texto" href="#portfolio" style="--atraso:1.45s">
+      <span class="hero__mini" aria-hidden="true">
+        <img class="ativo" data-img="capa-estrutural" sizes="140px" alt="">
+        <img data-img="capa-infernato" sizes="140px" alt="" loading="lazy">
+        <img data-img="capa-juu" sizes="140px" alt="" loading="lazy">
+        <img data-img="capa-jiraya" sizes="140px" alt="" loading="lazy">
+      </span>
+      <span class="hero__tocando-texto">
+        <span class="hero__tocando-rotulo"><span class="rec"></span>Tocando agora</span>
+        <strong data-hero-nome>Unificadas · Estrutura</strong>
+      </span>
+      <span class="redondo hero__tocando-seta" aria-hidden="true"><i data-i="arrow-up-right" data-w="light"></i></span>
+    </a>
+  </div>
+</section>

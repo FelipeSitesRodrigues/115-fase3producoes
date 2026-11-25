@@ -1,0 +1,87 @@
+/* ---------------------------------------------------------------- abertura (1x por visita)
+   Modelo da 0105 Ston, da 0104 Lume e da 0114 DJ Sky. Fundo escuro com o palco do JUU (fogo e
+   telão) em opacidade baixa e, por cima, o motion do logo que a Fase3 mandou (Recursos
+   Site/LOGO FASE3 PRODUÇÕES MOTION 2.mp4) refeito em código: cada peça é um SVG próprio
+   (96-abertura-logo, vetorizado do último quadro) e só transform e opacity se mexem. Como
+   vídeo, o motion engasgava: decodificava junto com o carregamento do site.
+   Coreografia do original (segundos do vídeo, acelerados pelo --v):
+     0 a .7   F e A caem de cima, S e E sobem de baixo
+     .9 a 1.5 um 8 gira de lado e se abre no E e no 3 do símbolo
+     1.55     o círculo pula no meio; o play gira até apontar pra direita
+     2.1      PRODUÇÕES sobe de dentro da máscara · 2.8 o til cai no O
+   Depois a tela inteira sai pra cima com a borda curva, revelando o hero.
+   Sem JS ou com movimento reduzido, não aparece. ?abertura no endereço força.               */
+.abertura { display: none; }
+.abre .abertura {
+  --v: .75;
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  background: var(--fundo);
+  pointer-events: none;
+  animation: abertura-sai .62s cubic-bezier(.76, 0, .24, 1) 2.7s both;
+}
+/* a borda curva: meia-lua do fundo presa embaixo da tela, que sobe junto */
+.abre .abertura::after { content: ''; position: absolute; left: -10%; right: -10%; top: calc(100% - 1px); height: 14vh; border-radius: 0 0 50% 50%; background: var(--fundo); }
+.abertura__video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: 0; animation: abertura-video .7s ease .05s forwards; }
+@keyframes abertura-video { to { opacity: .9; } }
+/* película: escurece o centro pro logo e põe a luz azul da marca subindo de baixo */
+.abre .abertura::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(42% 30% at 50% 50%, rgb(5 7 15 / .42), rgb(5 7 15 / 0) 80%),
+    radial-gradient(70% 45% at 50% 115%, rgb(47 107 255 / .3), transparent 70%);
+}
+@keyframes abertura-sai { to { transform: translate3d(0, calc(-100% - 15vh), 0); } }
+.abre .abertura.acabou { display: none; }
+
+/* ---------------------------------------------------------------- logo em peças */
+.ab-logo {
+  position: relative;
+  z-index: 2;
+  width: min(640PX, 82vw);
+  aspect-ratio: 5570 / 1570;
+  animation: ab-logo-sai .36s ease-in 2.62s both;
+}
+@keyframes ab-logo-sai { to { opacity: 0; transform: translate3d(0, -28px, 0) scale(.96); } }
+.ab-p { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; fill: #fff; fill-rule: evenodd; overflow: visible; }
+/* tempo do vídeo original vezes --v */
+.ab-f, .ab-a, .ab-s, .ab-e { animation: ab-cai calc(.55s * var(--v)) cubic-bezier(.22, 1, .36, 1) both; }
+.ab-f { animation-delay: 0s; }
+.ab-a { animation-delay: calc(.04s * var(--v)); }
+.ab-s { animation-name: ab-sobe; animation-delay: calc(.12s * var(--v)); }
+.ab-e { animation-name: ab-sobe; animation-delay: calc(.16s * var(--v)); }
+@keyframes ab-cai { from { opacity: 0; transform: translate3d(0, -70%, 0); } 40% { opacity: 1; } }
+@keyframes ab-sobe { from { opacity: 0; transform: translate3d(0, 70%, 0); } 40% { opacity: 1; } }
+/* o 8: E e 3 começam sobrepostos no centro do símbolo, giram de lado e se abrem */
+.ab-oito { position: absolute; inset: 0; transform-origin: 84.83% 32.8%; animation: ab-gira calc(.2s * var(--v)) ease-out calc(.86s * var(--v)) both; }
+@keyframes ab-gira { from { opacity: 0; transform: scaleX(.05); } 30% { opacity: 1; } }
+.ab-em, .ab-tres { animation: ab-abre calc(.45s * var(--v)) cubic-bezier(.65, 0, .35, 1) calc(1.05s * var(--v)) both; }
+.ab-em { --dx: 8.58%; }
+.ab-tres { --dx: -8.58%; }
+@keyframes ab-abre { from { transform: translate3d(var(--dx), 0, 0); } }
+/* círculo pula e o play gira por dentro */
+.ab-circ { position: absolute; inset: 0; transform-origin: 84.86% 32.77%; animation: ab-pula calc(.34s * var(--v)) cubic-bezier(.34, 1.56, .64, 1) calc(1.55s * var(--v)) both; }
+@keyframes ab-pula { from { opacity: 0; transform: scale(0); } 20% { opacity: 1; } }
+.ab-tri { fill: #0A0D17; transform-origin: 84.86% 32.77%; animation: ab-roda calc(.9s * var(--v)) cubic-bezier(.22, 1, .36, 1) calc(1.57s * var(--v)) both; }
+@keyframes ab-roda { from { transform: rotate(-600deg); } }
+/* PRODUÇÕES sobe de dentro da faixa dela */
+.ab-prod { position: absolute; left: 0; right: 0; top: 73.89%; height: 26.11%; overflow: clip; }
+.ab-letras { animation: ab-linha calc(.5s * var(--v)) cubic-bezier(.22, 1, .36, 1) calc(2.08s * var(--v)) both; }
+@keyframes ab-linha { from { transform: translate3d(0, 105%, 0); } }
+.ab-til { animation: ab-cai calc(.4s * var(--v)) cubic-bezier(.22, 1, .36, 1) calc(2.8s * var(--v)) both; }
+
+/* no computador o logo sobe um pouco: o "MERCATTO 90'S" escrito no vídeo da entrada fica
+   logo abaixo dele, como legenda, sem encostar no PRODUÇÕES */
+@media (min-width: 48em) {
+  .ab-logo { width: min(560PX, 82vw); margin-bottom: 6vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abre .abertura { display: none; }
+}

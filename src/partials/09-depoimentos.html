@@ -1,0 +1,41 @@
+<section class="secao depoimentos cv" style="--cvh:1000px" id="depoimentos" aria-labelledby="depoimentos-titulo">
+  <div class="caixa">
+    <p class="faixa" data-revela><span class="ponto">Depoimentos</span><span class="faixa__fim">+2.000 formandos</span></p>
+    <h2 class="titulo depoimentos__titulo" id="depoimentos-titulo" data-palavras data-revela="palavras">A turma inteira<br><span class="tarja"><i data-i="arrow-right" data-w="regular" class="seta"></i></span> com a gente.</h2>
+  </div>
+
+  <div class="depoimentos__palco">
+    <!-- duas fitas de rostos (quadros dos filmes da Fase3) cruzando atrás do cartão -->
+    <div class="rostos rostos--1" data-fita data-fita-px="34" aria-hidden="true">
+      <div class="rostos__trilho" data-fita-trilho><!-- @gerar rostos-1 --></div>
+    </div>
+    <div class="rostos rostos--2" data-fita data-fita-px="34" data-fita-dir="1" aria-hidden="true">
+      <div class="rostos__trilho" data-fita-trilho><!-- @gerar rostos-2 --></div>
+    </div>
+
+    <!-- PENDENTE: os 3 depoimentos são espaço reservado. Trocar pelos reais (print de avaliação
+         do Google ou mensagem da comissão, com nome, curso e ano) antes de publicar -->
+    <div class="depo vidro" data-revela="zoom" data-depo>
+      <i data-i="quotes" data-w="fill" class="depo__aspas"></i>
+      <ul class="depo__lista">
+        <li class="depo__item ativo">
+          <blockquote class="depo__texto">Espaço reservado para o depoimento de uma comissão de formatura, com o que a turma viveu no dia e no filme.</blockquote>
+          <p class="depo__quem"><img data-img="avatar-medicina-formanda" sizes="52px" alt="" loading="lazy"><span><strong>Nome da formanda</strong>Comissão · curso e ano</span></p>
+        </li>
+        <li class="depo__item">
+          <blockquote class="depo__texto">Espaço reservado para o depoimento de um formando sobre a festa e o aftermovie da turma.</blockquote>
+          <p class="depo__quem"><img data-img="avatar-chapeu" sizes="52px" alt="" loading="lazy"><span><strong>Nome do formando</strong>Formando · curso e ano</span></p>
+        </li>
+        <li class="depo__item">
+          <blockquote class="depo__texto">Espaço reservado para o depoimento de uma empresa sobre um stand, uma ativação ou um evento corporativo.</blockquote>
+          <p class="depo__quem"><img data-img="avatar-agrarias-copo" sizes="52px" alt="" loading="lazy"><span><strong>Nome do cliente</strong>Empresa · evento</span></p>
+        </li>
+      </ul>
+      <div class="depo__nav">
+        <button type="button" class="redondo" data-depo-ant aria-label="Depoimento anterior"><i data-i="arrow-left" data-w="regular"></i></button>
+        <button type="button" class="redondo" data-depo-prox aria-label="Próximo depoimento"><i data-i="arrow-right" data-w="regular"></i></button>
+        <p class="depo__conta" aria-live="polite"><span data-depo-n>01</span> / 03</p>
+      </div>
+    </div>
+  </div>
+</section>

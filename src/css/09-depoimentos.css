@@ -1,0 +1,66 @@
+/* ---------------------------------------------------------------- depoimentos
+   Duas fitas de rostos levemente inclinadas, correndo em sentidos opostos atrás de um cartão
+   de vidro com o depoimento. Brilho azul suave nascendo atrás do cartão. Mockup aprovado.    */
+.depoimentos { overflow: clip; padding-bottom: 128px; }
+.depoimentos__titulo { margin-top: 56px; text-align: center; }
+.depoimentos__palco { position: relative; display: grid; place-items: center; margin-top: 64px; min-height: 560px; }
+.depoimentos__palco::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 900px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgb(47 107 255 / .34), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+.rostos {
+  position: absolute;
+  left: -4%;
+  right: -4%;
+  overflow: clip;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+}
+.rostos--1 { top: 0; transform: rotate(-3deg); }
+.rostos--2 { bottom: 0; transform: rotate(3deg); }
+.rostos__trilho { display: flex; width: max-content; will-change: transform; }
+.rostos__grupo { display: flex; flex: none; gap: 14px; padding-right: 14px; }
+.rostos__foto { width: 170px; aspect-ratio: 2 / 3; border-radius: 18px; overflow: hidden; background: var(--fundo-3); opacity: .62; }
+.rostos__foto picture, .rostos__foto img { width: 100%; height: 100%; max-width: none; object-fit: cover; }
+html:not(.fita-anda) .rostos__grupo + .rostos__grupo { display: none; }
+
+.depo {
+  position: relative;
+  z-index: 2;
+  width: min(100% - 48PX, 720px);
+  padding: 44px 52px 36px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgb(24 30 50 / .72), rgb(10 14 26 / .78));
+}
+.depo__aspas { width: 52px; height: 52px; color: var(--azul); }
+.depo__lista { display: grid; margin-top: 18px; }
+.depo__item { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translate3d(0, 12px, 0); transition: opacity .6s var(--ease), transform .8s var(--ease), visibility 0s .6s; }
+.depo__item.ativo { opacity: 1; visibility: visible; transform: none; transition: opacity .7s var(--ease) .1s, transform .9s var(--ease) .1s, visibility 0s; }
+.depo__texto { font-size: 28px; line-height: 1.32; letter-spacing: -.02em; }
+.depo__quem { display: flex; align-items: center; gap: 16px; margin-top: 32px; font-size: 15px; color: var(--texto); }
+.depo__quem img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 1px solid var(--linha-2); }
+.depo__quem span { display: grid; gap: 2px; }
+.depo__quem strong { font-size: 17px; font-weight: 600; color: var(--branco); }
+.depo__nav { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin-top: -48px; }
+.depo__nav .redondo { width: 48px; height: 48px; font-size: 18px; }
+.depo__conta { min-width: 62px; margin-left: 8px; font-size: 15px; font-variant-numeric: tabular-nums; color: var(--texto); }
+
+@media (max-width: 47.99em) {
+  .depoimentos { padding-bottom: 88PX; }
+  .depoimentos__titulo { margin-top: 36PX; }
+  .depoimentos__palco { margin-top: 40PX; min-height: 520PX; }
+  .rostos__foto { width: 110PX; border-radius: 12PX; }
+  .depo { padding: 30PX 24PX 26PX; border-radius: 24PX; }
+  .depo__aspas { width: 38PX; height: 38PX; }
+  .depo__texto { font-size: 20PX; }
+  .depo__quem { margin-top: 24PX; }
+  .depo__nav { justify-content: flex-start; margin-top: 24PX; }
+}

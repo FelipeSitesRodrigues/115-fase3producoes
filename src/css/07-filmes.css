@@ -1,0 +1,133 @@
+/* ---------------------------------------------------------------- portfólio em tela cheia
+   Uma seção por categoria, como abertura de filme: o trecho do filme em tela cheia, o nome da
+   categoria gigante de borda a borda na base (encaixado na largura pelo 07-filmes.js), e
+   setas, barras e "a seguir" pra passar entre os filmes. O play abre o filme inteiro.        */
+.filme {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  min-height: 680px;
+  max-height: 1100px;
+  overflow: clip;
+  isolation: isolate;
+  color: #fff;
+}
+.filme + .filme { border-top: 1px solid rgb(255 255 255 / .08); }
+.filme__midia { position: absolute; inset: 0; z-index: -1; background: var(--fundo); }
+.filme__quadro, .filme__quadro img, .filme__video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.filme__quadro { opacity: 0; transition: opacity 1s var(--ease); }
+.filme__quadro:has(.ativo) { opacity: 1; }
+.filme__video { opacity: 0; transition: opacity .6s var(--ease); }
+.filme__video.tocando { opacity: 1; }
+/* a foto parada do corporativo respira devagar */
+.filme--corporativo.visivel .filme__parado { animation: filme-respira 16s ease-in-out infinite alternate; }
+@keyframes filme-respira { from { transform: scale(1); } to { transform: scale(1.08); } }
+.filme__veu {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, rgb(5 7 15 / .9) 0%, rgb(5 7 15 / .35) 34%, rgb(5 7 15 / 0) 55%),
+    linear-gradient(180deg, rgb(5 7 15 / .7) 0%, rgb(5 7 15 / 0) 24%);
+}
+/* faixas finas de cinema em cima e embaixo */
+.filme::before, .filme::after { content: ''; position: absolute; left: 0; right: 0; z-index: 2; height: 14px; background: #000; pointer-events: none; }
+.filme::before { top: 0; }
+.filme::after { bottom: 0; }
+
+.filme__topo { position: absolute; top: 56px; left: 48px; right: 48px; display: flex; justify-content: space-between; gap: 32px; }
+.filme__secao { display: grid; gap: 10px; font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.filme__indice { padding-left: 18px; color: rgb(245 247 255 / .7); font-variant-numeric: tabular-nums; }
+.filme__info { display: grid; justify-items: end; gap: 6px; text-align: right; }
+.filme__info strong { font-size: 20px; font-weight: 500; letter-spacing: -.01em; text-transform: uppercase; }
+.filme__info span { font-size: 15px; color: rgb(245 247 255 / .75); }
+.filme__info .troca { animation: hero-nome .7s var(--ease); }
+
+.filme__play { position: absolute; left: 50%; top: 44%; display: grid; justify-items: center; gap: 16px; transform: translate(-50%, -50%); }
+.filme__play-bola {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  font-size: 34px;
+  border: 1px solid rgb(255 255 255 / .35);
+  background: linear-gradient(180deg, rgb(255 255 255 / .26), rgb(255 255 255 / .08));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .45), 0 20px 50px -20px rgb(0 0 0 / .6);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  transition: transform .6s var(--ease), background-color .35s var(--ease-hover);
+}
+.filme__play-bola .i { margin-left: 5px; }
+/* anel que pulsa devagar em volta do play (dentro da bola: não estoura a largura) */
+.filme__play-bola::after { content: ''; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid rgb(255 255 255 / .5); animation: filme-anel 2.8s var(--ease) infinite; }
+@keyframes filme-anel { from { transform: scale(1); opacity: .8; } to { transform: scale(1.45); opacity: 0; } }
+.filme__play:hover .filme__play-bola { transform: scale(1.07); }
+.filme__play-texto { font-size: 16px; font-weight: 500; text-shadow: 0 2px 12px rgb(0 0 0 / .5); }
+
+.filme__orcamento { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); }
+.filme__orcamento:hover { transform: translate(-50%, calc(-50% - 2px)); }
+
+.filme__controles { position: absolute; left: 48px; right: 48px; bottom: calc(var(--alto, 13vw) + 36px); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.filme__nav { display: flex; align-items: center; gap: 12px; }
+.filme__conta { margin: 0 20px 0 12px; font-size: 15px; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.filme__barras .barras__item { width: 96px; }
+.filme__seguir { display: flex; align-items: center; gap: 18px; text-align: left; }
+.filme__seguir-mini { position: relative; width: 132px; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; border: 1px solid rgb(255 255 255 / .35); background: var(--fundo-3); transition: transform .5s var(--ease); }
+.filme__seguir-mini picture, .filme__seguir-mini img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.filme__seguir-mini picture { opacity: 0; transition: opacity .6s var(--ease); }
+.filme__seguir-mini picture:has(.ativo) { opacity: 1; }
+.filme__seguir:hover .filme__seguir-mini { transform: scale(1.05); }
+.filme__seguir-texto { display: grid; gap: 4px; }
+.filme__seguir-texto span { font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.filme__seguir-texto strong { font-size: 16px; font-weight: 400; text-transform: uppercase; letter-spacing: .01em; color: rgb(245 247 255 / .85); }
+
+/* a palavra gigante: o JS encaixa a fonte na largura; sem JS, 16,4vw cabe "Corporativo" */
+.filme__palavra {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  padding: 0 24px;
+  font-size: 16.4vw;
+  font-weight: 500;
+  line-height: .78;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+.filme__palavra .pw { overflow: clip; padding: .1em .02em 0; margin: -.1em -.02em 0; }
+.js .filme__palavra .pc { opacity: 1; transform: translate3d(0, 104%, 0); transition: transform 1.2s var(--ease); transition-delay: calc(var(--c, 0) * 45ms); }
+.js .filme__palavra.visivel .pc { transform: none; }
+
+@media (max-width: 63.99em) {
+  .filme__topo { top: 92PX; left: 32PX; right: 32PX; }
+  .filme__controles { left: 32PX; right: 32PX; }
+  .filme__barras { display: none; }
+}
+@media (max-width: 47.99em) {
+  .filme { min-height: 620PX; max-height: none; }
+  .filme::before, .filme::after { height: 8PX; }
+  .filme__veu { background: linear-gradient(0deg, rgb(5 7 15 / .92) 0%, rgb(5 7 15 / .3) 40%, rgb(5 7 15 / 0) 60%), linear-gradient(180deg, rgb(5 7 15 / .75) 0%, rgb(5 7 15 / 0) 30%); }
+  .filme__topo { top: 76PX; left: 20PX; right: 20PX; flex-direction: column; gap: 18PX; }
+  .filme__secao { font-size: 11PX; }
+  .filme__info { justify-items: start; text-align: left; }
+  .filme__info strong { font-size: 17PX; }
+  .filme__info span { font-size: 13.5PX; }
+  .filme__play { top: 50%; }
+  .filme__play-bola { width: 84PX; height: 84PX; font-size: 26PX; }
+  .filme__orcamento { top: 52%; width: calc(100% - 40PX); }
+  .filme__controles { left: 20PX; right: 20PX; bottom: calc(var(--alto, 13vw) + 22PX); }
+  .filme__nav { gap: 8PX; }
+  .filme__nav .redondo { width: 44PX; height: 44PX; font-size: 17PX; }
+  .filme__conta { margin: 0 0 0 6PX; font-size: 13PX; }
+  .filme__seguir-texto { display: none; }
+  .filme__seguir-mini { width: 92PX; }
+  .filme__palavra { padding: 0 12PX; bottom: 6PX; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .filme__palavra .pc { transform: none; transition: none; }
+  .filme__play-bola::after { animation: none; }
+  .filme--corporativo.visivel .filme__parado { animation: none; }
+}
